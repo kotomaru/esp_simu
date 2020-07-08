@@ -1,0 +1,4 @@
+CXX = g++ -g
+
+all: src/main.cpp
+	$(CXX) -o simu_resl src/main.cpp -lm

@@ -1,0 +1,87 @@
+//This is a program for calculating Eex resolution
+//2020/07/06
+
+#include <iostream>
+#include <cmath>
+#include <stdio.h>
+#include <string.h>
+
+using namespace std;
+
+#define OP_C 0
+/* -c -> case 1,2 or 3 */
+#define NUM_OP 1
+
+struct OptTable{
+  char *option;
+  int n;
+  int count;
+}
+OptTable[]={
+  {"-c",0,0}  
+};
+  
+int check_option(char *arg){
+  int jj=0;
+  for(;jj<NUM_OP;jj++){
+    if(strcmp(arg,OptTable[jj].option)==0) return(OptTable[jj].n);
+  }
+  return -1;
+}
+
+int main(int argc, char *argv[])
+{
+  double Eex=60., Mbeam=52000.; 
+ 
+  // for(i=1;i<argc;i++){
+  //   if(argv[i] ='-'){
+      
+  //   }
+  // }
+
+  for(int i=1;i<argc;i++){
+    if(*argv[i] ='-'){
+      
+    }
+  }
+
+  for(int i=0;i<NUM_OP;i++){
+    cout<<OptTable[i].option<<":"<<OptTable[i].n<<endl;
+  }
+
+  
+  cout<< "Energy resolution  :  INPUT each RESOLUTION"<<endl;
+
+  const double ll = 1.0; //meter
+  double dEex;
+  double dTheta_p, dKE_p, dKE_b;
+  double dtheta_b, dx_b, dx_p, dz, dtheta_mlt;
+  cout<<"dKE_p (MeV) : "; cin>>dKE_p;
+  cout<<"dKE_b (MeV) : "; cin>>dKE_b;
+  cout<<"-------------------------"<<endl;
+  cout<<"dtheta_b (mrad): "; cin>>dtheta_b;
+  cout<<"dx_b (mm): "; cin>>dx_b;
+  cout<<"dx_p (mm): "; cin>>dx_p;
+  cout<<"dz (mm): "; cin>>dz;
+  cout<<"dtheta_mlt (mrad) : "; cin>>dtheta_mlt;
+  
+  dTheta_p = pow(dtheta_b,2.0)
+    + pow(dx_b/ll,2.0)
+    + pow(dx_p/ll,2.0)
+    + pow(dz/ll,2.0)
+    + pow(dtheta_mlt,2.0);
+  dTheta_p = sqrt(dTheta_p);
+
+
+  // dEex = (pow(dTheta_p,2.)+pow(dKE_p,2.0)+pow(dKE_b,2.0))
+  // 	  /pow(Eex+Mbeam,2.0);
+  // dEex = sqrt(dEex);
+
+  
+  cout<<"\n-------------------\n"<<endl;
+  // cout<<"Eres = "<<dEex<<endl;
+   cout<<"d-Theta_p (mrad) = "<<dTheta_p<<endl;
+
+  return 0;
+
+}
